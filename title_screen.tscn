@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfqjgjceg2kd7"]
+
+[ext_resource type="Script" uid="uid://bo4nyxdq26hln" path="res://title_screen.gd" id="1_ak2if"]
+[ext_resource type="PackedScene" uid="uid://0gekk4e6j12c" path="res://game.tscn" id="1_v6p8y"]
+[ext_resource type="Script" uid="uid://brsnldofmlnws" path="res://button_handler.gd" id="3_ig5kc"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ak2if")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Node2D" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_v6p8y")]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+script = ExtResource("3_ig5kc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "ManagmentThings"
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="StatsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Stats"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="MarginContainer" method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StatsButton" to="MarginContainer" method="_on_stats_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="MarginContainer" method="_on_exit_button_pressed"]

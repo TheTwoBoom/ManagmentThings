@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwme1emwsps1n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74d66"]
+bg_color = Color(0, 0, 0, 0.705882)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+
+[node name="ToolTip" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_74d66")
+
+[node name="Label" type="Label" parent="ToolTip"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "E"
